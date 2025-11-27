@@ -64,7 +64,11 @@ const isEncKeyDeclared = async function(ctx) {
 //Verifica se já existe um cliente cadastrado fazendo uma consulta no BD utilizando o valor do atributo
 //jwks_uri como chave de busca
 const isClientAlreadyRegistered = async function(ctx, dbAdapter) {
-    const client = await new dbAdapter("client").findClientByJwksUri(ctx.request.body?.jwks_uri);
+    const adapter = new dbAdapter("Client");
+    
+    // Agora o método existe porque criamos no Passo 1
+    const client = await adapter.findClientByJwksUri(ctx.request.body?.jwks_uri);
+    
     if (client) {
         throwErrorRespose(ctx, 400, "invalid_client_metadata", "There is another client already registered with this software statement id");
     }

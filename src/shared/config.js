@@ -31,6 +31,13 @@ export const config = {
         dynamodb: {
             region: process.env?.AWS_DEFAULT_REGION,
             tableName: process.env?.DYNAMODB_TABLE_NAME
+        },
+        postgres: {
+            user: process.env?.DB_PORT || "user",
+            host: process.env?.DB_HOST || "db",
+            database: process.env?.DB_NAME || "oidc_db",
+            password: process.env?.DB_PASSWORD || "password",
+            port: process.env?.DB_PORT || 5432
         }
     },
     rolesAndScopes: {
